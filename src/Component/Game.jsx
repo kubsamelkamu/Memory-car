@@ -1,5 +1,6 @@
-import { array } from "prop-types";
 import { useEffect, useState } from "react";
+import ScoreBoard from "./Score";
+import DisplayCard from "./Card";
 
 async function fetchCard(){
     const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=6');
@@ -53,4 +54,24 @@ function GameBoard(){
             setInterval(() => setFlippedCard([]),1000);
         }
     },[bestScore, card, currentScore, flippedCard, matchedCard],[bestScore])
+
+
+    return(
+        <div>
+            <ScoreBoard currentScore={currentScore} bestScore={bestScore} />
+            <div className="game-board">
+                {card.map((card,index)=>(
+                    <DisplayCard
+                        key={index}
+                        id={index}
+                        image={card.image}
+                        isFlipped={flippedCard.includes(index) || matchedCard.includes(index)}
+                        onClick={handleCardClick}
+                    />
+                ))}
+            </div>
+        </div>
+    );
 }
+
+export default GameBoard;
