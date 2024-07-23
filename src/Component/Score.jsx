@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 
 function ScoreBoard({currentScore,bestScore}){
     return(
@@ -8,6 +9,9 @@ function ScoreBoard({currentScore,bestScore}){
     );
 }
 
-
+ScoreBoard.propTypes ={
+    currentScore:PropTypes.number.isRequired,
+    bestScore:PropTypes.number.isRequired,
+}
 
 export default ScoreBoard;
