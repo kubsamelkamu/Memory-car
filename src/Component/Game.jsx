@@ -1,5 +1,5 @@
 import { array } from "prop-types";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 async function fetchCard(){
     const response = await fetch('https://pokeapi.co/api/v2/pokemon?limit=6');
@@ -23,5 +23,14 @@ function GameBoard(){
     const[matchedCard,setMatchedCard] = useState([]);
     const[currentScore,setCurrentScore] = useState(0);
     const[bestScore,setBestScore] = useState(0);
-    
+
+
+    useEffect(()=>{
+        async function loadCard (){
+            const fetchedCards = await fetchCard();
+            setCard(shuffleCard([...fetchedCards,...fetchedCards]));
+        }
+
+        loadCard();
+    },[]);
 }
