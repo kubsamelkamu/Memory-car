@@ -1,3 +1,4 @@
+import PropTypes from 'prop-types';
 
 
 function DisplayCard({id,image,isFlipped,onClick}){
@@ -10,7 +11,12 @@ function DisplayCard({id,image,isFlipped,onClick}){
         )
 }
 
-
+DisplayCard.propTypes ={
+    id: PropTypes.number.isRequired,
+    image: PropTypes.string.isRequired,
+    isFlipped: PropTypes.bool.isRequired,
+    onClick: PropTypes.func.isRequired,
+}
 
 
 
