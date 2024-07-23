@@ -39,4 +39,18 @@ function GameBoard(){
             setFlippedCard([...flippedCard,id]);
         }
     };
+
+    useEffect(() =>{
+        if (flippedCard.length == 2) {
+            const[firstCard,secondCard] = flippedCard;
+            if (card[firstCard].image === card[secondCard].image) {
+                setMatchedCard([...matchedCard,firstCard,secondCard]);
+                setCurrentScore(currentScore + 1);
+                if (currentScore + 1 >bestScore) {
+                    setBestScore(currentScore + 1);
+                }                
+            }
+            setInterval(() => setFlippedCard([]),1000);
+        }
+    },[bestScore, card, currentScore, flippedCard, matchedCard],[bestScore])
 }
