@@ -33,4 +33,10 @@ function GameBoard(){
 
         loadCard();
     },[]);
+
+    const handleCardClick =(id) =>{
+        if (flippedCard.length < 2  && flippedCard.includes(id) && !matchedCard.includes(id)) {
+            setFlippedCard([...flippedCard,id]);
+        }
+    };
 }
